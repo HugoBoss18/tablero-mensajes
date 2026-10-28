@@ -1,3 +1,10 @@
+# mensajes/admin.py
 from django.contrib import admin
 
-# Register your models here.
+from .models import Mensaje
+
+
+@admin.register(Mensaje)
+class MensajeAdmin(admin.ModelAdmin):
+    list_display = ["texto", "fecha"]
+    search_fields = ["texto"]

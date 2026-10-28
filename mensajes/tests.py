@@ -22,3 +22,16 @@ class PruebasMensaje(TestCase):
         self.assertEqual(respuesta.status_code, 200)
         self.assertTemplateUsed(respuesta, "inicio.html")
         self.assertContains(respuesta, "Esta es una prueba.")
+
+    def test_str_modelo(self):  # nuevo
+        self.assertEqual(str(self.mensaje), "Esta es una prueba.")
+
+
+class PruebaPaginaMensajesVacia(TestCase):
+    def test_muestra_mensaje_si_no_hay_registros(self):
+        Mensaje.objects.all().delete()
+
+        respuesta = self.client.get(reverse("inicio"))
+
+        self.assertContains(respuesta, "Todavía no hay mensajes.")
+        self.assertContains(respuesta, "Total de mensajes: 0")

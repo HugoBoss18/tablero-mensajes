@@ -14,5 +14,15 @@
       <li>Todavía no hay mensajes.</li>
     {% endfor %}
   </ul>
+  <p>Total de mensajes: {{ mensajes|length }}</p>
+
+
+    {% if mensajes %}
+        {% for mensaje in mensajes %}
+            <li>{{ mensaje.texto }}</li>
+        {% endfor %}
+    {% else %}
+        <p>Todavía no hay mensajes.</p>
+    {% endif %}
 </body>
 </html>
